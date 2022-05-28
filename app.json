@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "the-planet",
+    "name": "The Planet",
     "slug": "the-planet",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/planet.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/planet.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
