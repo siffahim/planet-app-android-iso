@@ -1,7 +1,7 @@
 import { AntDesign } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { FlatList, Pressable, SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
+import { FlatList, Pressable, SafeAreaView, ScrollView, StyleSheet, TextInput, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import PlanetHeader from '../components/PlanetHeader/PlanetHeader'
 import Text from '../components/Text/Text'
@@ -29,7 +29,8 @@ const PlanetItem = ({ item }) => {
 
 export default function Home({ navigation }) {
     const insets = useSafeAreaInsets();
-    const [list, setList] = useState(PLANET_LIST)
+    const [list, setList] = useState(PLANET_LIST);
+
 
     const searchFilter = (text) => {
         const filterPlanet = PLANET_LIST.filter(item => {
@@ -63,13 +64,15 @@ export default function Home({ navigation }) {
                 onChangeText={(text) => searchFilter(text)}
             />
 
-            <FlatList
-                contentContainerStyle={styles.list}
-                data={list}
-                keyExtractor={(item) => item.name}
-                renderItem={renderItem}
-                ItemSeparatorComponent={() => <View style={styles.separator} />}
-            />
+            <ScrollView>
+                <FlatList
+                    contentContainerStyle={styles.list}
+                    data={list}
+                    keyExtractor={(item) => item.name}
+                    renderItem={renderItem}
+                    ItemSeparatorComponent={() => <View style={styles.separator} />}
+                />
+            </ScrollView>
         </SafeAreaView>
     )
 }
