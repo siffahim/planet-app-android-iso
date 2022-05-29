@@ -1,9 +1,10 @@
 import { EvilIcons } from '@expo/vector-icons'
 import React from 'react'
-import { Image, Linking, Pressable, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native'
+import { Linking, Pressable, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import PlanetHeader from '../components/PlanetHeader/PlanetHeader'
 import Text from '../components/Text/Text'
+import { EarthSvg, JupiterSvg, MarsSvg, MercurySvg, NeptuneSvg, SaturnSvg, UranusSvg, VenusSvg } from '../svg'
 import { colors } from '../theme/color'
 import { spacings } from '../theme/spacing'
 
@@ -21,6 +22,27 @@ export default function Details({ navigation, route }) {
     const planet = route.params.planet;
     const { name, description, rotationTime, revolutionTime, radius, avgTemp, wikiLink } = planet;
 
+    const randerImg = () => {
+        switch (name) {
+            case 'mercury':
+                return <MercurySvg />;
+            case 'venus':
+                return <VenusSvg />;
+            case 'earth':
+                return <EarthSvg />;
+            case 'jupiter':
+                return <JupiterSvg />;
+            case 'mars':
+                return <MarsSvg />;
+            case 'neptune':
+                return <NeptuneSvg />;
+            case 'saturn':
+                return <SaturnSvg />;
+            case 'uranus':
+                return <UranusSvg />;
+        }
+    }
+
     const onPressLink = () => {
         Linking.openURL(wikiLink)
     }
@@ -32,9 +54,7 @@ export default function Details({ navigation, route }) {
             />
             <ScrollView>
                 <View style={styles.imageView}>
-                    <Image source={{ uri: 'https://cubettech.com/wp-content/uploads/2018/09/1280px-React-icon.svg_.png' }}
-                        style={{ width: 200, height: 200 }}
-                    />
+                    {randerImg(name)}
                 </View>
                 <View style={styles.textDetais}>
                     <Text preset='h1' style={styles.name}>{name}</Text>
